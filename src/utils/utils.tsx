@@ -1,0 +1,9 @@
+import {DELAY_IN_MS} from '../constants/delays';
+
+export const setDelay = (delay: number = DELAY_IN_MS): Promise<null> => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(null);
+    }, delay);
+  });
+};

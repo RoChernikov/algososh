@@ -1,14 +1,14 @@
-import React from "react";
-import Marquee from "react-fast-marquee";
-import { Link } from "react-router-dom";
+import React from 'react';
+import Marquee from 'react-fast-marquee';
+import {Link} from 'react-router-dom';
 
-import styles from "./main-page.module.css";
+import styles from './main.module.css';
 
 interface MainPageProps {
   extraClass?: string;
 }
 
-export const MainPage: React.FC<MainPageProps> = ({ extraClass = "" }) => {
+const MainPage: React.FC<MainPageProps> = ({extraClass = ''}) => {
   return (
     <main className={`${styles.content} ${extraClass}`}>
       <div className={styles.title_box}>
@@ -16,8 +16,7 @@ export const MainPage: React.FC<MainPageProps> = ({ extraClass = "" }) => {
           МБОУ АЛГОСОШ
         </h1>
         <p
-          className={`text text_type_fibonacci text_color_secondary ${styles.fibonacci_title}`}
-        >
+          className={`text text_type_fibonacci text_color_secondary ${styles.fibonacci_title}`}>
           им. Фибоначчи
         </p>
       </div>
@@ -43,8 +42,7 @@ export const MainPage: React.FC<MainPageProps> = ({ extraClass = "" }) => {
       </div>
       <Marquee className={styles.ticker} gradient={false} speed={200}>
         <p
-          className={`text text_type_ticker text_color_secondary ${styles.ticker_text}`}
-        >
+          className={`text text_type_ticker text_color_secondary ${styles.ticker_text}`}>
           Вдохновлено школами, в которых не учили алгоритмам
         </p>
         <div className={styles.dot_box}>
@@ -52,10 +50,11 @@ export const MainPage: React.FC<MainPageProps> = ({ extraClass = "" }) => {
         </div>
       </Marquee>
       <p
-        className={`text text_type_column text_color_input mt-14 ${styles.copyright}`}
-      >
+        className={`text text_type_column text_color_input mt-14 ${styles.copyright}`}>
         © Сделано в Практикуме.
       </p>
     </main>
   );
 };
+
+export default MainPage;
