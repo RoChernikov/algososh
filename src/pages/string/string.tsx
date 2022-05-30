@@ -10,32 +10,37 @@ import swapChars from './utils';
 
 const StringPage: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
-  const [letters, setLetters] = useState<TStringChar[]>([]);
+  const [lettersArr, setLettersArr] = useState<TStringChar[]>([]);
   const [inProgress, setInProgress] = useState(false);
 
   return (
     <SolutionLayout title="Строка">
-      <InputWrapper>
-        <Input
-          value={inputValue}
-          onChange={(evt: FormEvent<HTMLInputElement>) =>
-            setInputValue(evt.currentTarget.value)
-          }
-          isLimitText={true}
-          maxLength={11}
-        />
-        <Button
-          disabled={!inputValue}
-          isLoader={inProgress}
-          text="Развернуть"
-          type="submit"
-          onClick={() =>
-            swapChars(inputValue, setInputValue, setLetters, setInProgress)
-          }
-        />
-      </InputWrapper>
+      <form
+        onSubmit={evt => {
+          evt.preventDefault();
+          swapChars(inputValue, setInputValue, setLettersArr, setInProgress);
+        }}>
+        <InputWrapper>
+          <Input
+            disabled={inProgress}
+            value={inputValue}
+            onChange={(evt: FormEvent<HTMLInputElement>) =>
+              setInputValue(evt.currentTarget.value)
+            }
+            isLimitText={true}
+            maxLength={11}
+          />
+          <Button
+            disabled={!inputValue}
+            isLoader={inProgress}
+            text="Развернуть"
+            type="submit"
+          />
+        </InputWrapper>
+      </form>
+
       <ul className={styles.circleList}>
-        {letters.map((char, idx) => {
+        {lettersArr.map((char, idx) => {
           return <Circle state={char.state} letter={char.char} key={idx} />;
         })}
       </ul>
