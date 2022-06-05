@@ -1,137 +1,114 @@
-import React, {Dispatch, SetStateAction} from 'react';
 import {swap} from '../../utils/algorithms-utils';
-import {SHORT_DELAY_IN_MS} from '../../constants/delays';
 import {ElementStates} from '../../types/element-states';
 import {TBar} from '../../types/types';
-import {setDelay} from '../../utils/utils';
 
-const sortAndWait = async (
-  arr: TBar[],
-  barsSetter: Dispatch<SetStateAction<TBar[]>>
-) => {
-  barsSetter([...arr]);
-  await setDelay(SHORT_DELAY_IN_MS);
-};
-
-export const selectionSort = async (
+// ***********************СОРТИРОВКА ВЫБОРОМ***********************
+export const selectionSortAlgorithm = (
   mode: 'ascending' | 'descending',
-  progressSetter: Dispatch<SetStateAction<boolean>>,
-  setAscendingRunning: Dispatch<SetStateAction<boolean>>,
-  setDescendingRunning: Dispatch<SetStateAction<boolean>>,
-  barsSetter: Dispatch<SetStateAction<TBar[]>>,
-  bars: TBar[]
-) => {
-  progressSetter(true);
-  mode === 'ascending' ? setAscendingRunning(true) : setDescendingRunning(true);
-
-  //Копируем массив из стейта и делаем все элементы дефолтными
-  const arr = [...bars];
+  arrayToSort: TBar[],
+  step?: number
+): {resArr: TBar[]; numberOfSteps: number} => {
+  // Создаем копию массива столбцов и меняем стейт на Default
+  const arr = [...arrayToSort];
   arr.forEach(el => (el.state = ElementStates.Default));
-  barsSetter([...arr]);
-  // Начинаем цикл
+  // Начало цикла
   const {length} = arr;
+  let currentStep = 0;
   for (let i = 0; i < length; i++) {
-    // Инициализация счётчика
-    let swapInd = i;
-    // Подсвечиваем элемент рыжим, который будет отсортирован
+    let swapIdx = i;
     arr[i].state = ElementStates.Selected;
-    await sortAndWait(arr, barsSetter);
-    // Начинаем цикл по оставшимся элементам
+    currentStep++;
+
+    if (step === currentStep) return {resArr: arr, numberOfSteps: currentStep};
     for (let j = i + 1; j < length; j++) {
-      // Подсвечиваем кандидата на свап фиолетовым
       arr[j].state = ElementStates.Changing;
-      await sortAndWait(arr, barsSetter);
+      currentStep++;
+
+      if (step === currentStep)
+        return {resArr: arr, numberOfSteps: currentStep};
       if (
-        (mode === 'ascending' ? arr[swapInd].num : arr[j].num) >
-        (mode === 'ascending' ? arr[j].num : arr[swapInd].num)
+        (mode === 'ascending' ? arr[swapIdx].num : arr[j].num) >
+        (mode === 'ascending' ? arr[j].num : arr[swapIdx].num)
       ) {
-        // Если кандидат больше (меньше) текущего экстремума - то мы нашли второй элемент на свап,
-        // подсвечиваем его рыжим, а старого кандидата либо делаем дефолтным,
-        // либо оставляем рыжим (если это i-й элемент, для которого мы ищем кандидата)
         arr[j].state = ElementStates.Selected;
-        arr[swapInd].state =
-          i === swapInd ? ElementStates.Selected : ElementStates.Default;
-        swapInd = j;
-        await sortAndWait(arr, barsSetter);
+        arr[swapIdx].state =
+          i === swapIdx ? ElementStates.Selected : ElementStates.Default;
+        swapIdx = j;
+        currentStep++;
+
+        if (step === currentStep)
+          return {resArr: arr, numberOfSteps: currentStep};
       }
-      // После визуальной сортировки меняем цвет текущего элемента, но не
-      // рисуем его (не сортируем массив) он будет отрисован на следующем шаге
-      arr[j].state =
-        swapInd === j ? ElementStates.Selected : ElementStates.Default;
+      if (j !== swapIdx) arr[j].state = ElementStates.Default;
     }
-    // Если сортируемый элемент сам является экстремумом - рисуем его как "modified"
-    if (i === swapInd) {
+    if (i === swapIdx) {
       arr[i].state = ElementStates.Modified;
-      await sortAndWait(arr, barsSetter);
-    }
-    // В противном случае нужен свап и замена цветов (нужно 2 рендера)
-    else {
-      swap(arr, i, swapInd);
-      await sortAndWait(arr, barsSetter);
+      currentStep++;
+
+      if (step === currentStep)
+        return {resArr: arr, numberOfSteps: currentStep};
+    } else {
+      swap(arr, i, swapIdx);
       arr[i].state = ElementStates.Modified;
-      arr[swapInd].state = ElementStates.Default;
-      await sortAndWait(arr, barsSetter);
+      currentStep++;
+
+      if (step === currentStep)
+        return {resArr: arr, numberOfSteps: currentStep};
+
+      arr[swapIdx].state = ElementStates.Default;
+      currentStep++;
+
+      if (step === currentStep)
+        return {resArr: arr, numberOfSteps: currentStep};
     }
   }
-  // Анлочим кнопки
-  progressSetter(false);
-  mode === 'ascending'
-    ? setAscendingRunning(false)
-    : setDescendingRunning(false);
+  return {resArr: arr, numberOfSteps: currentStep};
 };
 
-export const bubbleSort = async (
+// ***********************СОРТИРОВКА ПУЗЫРЬКОМ***********************
+export const bubbleSortAlgorithm = (
   mode: 'ascending' | 'descending',
-  progressSetter: Dispatch<SetStateAction<boolean>>,
-  setAscendingRunning: Dispatch<SetStateAction<boolean>>,
-  setDescendingRunning: Dispatch<SetStateAction<boolean>>,
-  barsSetter: Dispatch<SetStateAction<TBar[]>>,
-  bars: TBar[]
-) => {
-  // Лочим кнопки
-  progressSetter(true);
-  mode === 'ascending' ? setAscendingRunning(true) : setDescendingRunning(true);
-  //Копируем массив из стейта и делаем все элементы дефолтными
-  const arr = [...bars];
+  arrayToSort: TBar[],
+  step?: number
+): {resArr: TBar[]; numberOfSteps: number} => {
+  // Создаем копию массива столбцов и меняем стейт на Default
+  const arr = [...arrayToSort];
   arr.forEach(el => (el.state = ElementStates.Default));
-  await sortAndWait(arr, barsSetter);
-  // Начинаем цикл
+  // Начало цикла
   const {length} = arr;
-  // Флаг свапа
-  let swapped: boolean;
-  do {
-    swapped = false;
-    for (let i = 0; i < length - 1; i++) {
-      // Подсвечиваем выбранные элементы
-      arr[i].state = ElementStates.Changing;
-      arr[i + 1].state = ElementStates.Changing;
-      await sortAndWait(arr, barsSetter);
-      // Если один больше (меньше) другого - свапаем их
+  let currentStep = 0;
+  for (let i = 0; i < length - 1; i++) {
+    for (let k = 0; k < length - 1 - i; k++) {
+      arr[k].state = ElementStates.Changing;
+      arr[k + 1].state = ElementStates.Changing;
+      currentStep++;
+
+      if (step === currentStep)
+        return {resArr: arr, numberOfSteps: currentStep};
       if (
-        (mode === 'ascending' ? arr[i].num : arr[i + 1].num) >
-        (mode === 'ascending' ? arr[i + 1].num : arr[i].num)
+        (mode === 'ascending' ? arr[k].num : arr[k + 1].num) >
+        (mode === 'ascending' ? arr[k + 1].num : arr[k].num)
       ) {
-        arr[i].state = ElementStates.Selected;
-        arr[i + 1].state = ElementStates.Selected;
-        await sortAndWait(arr, barsSetter);
-        swap(arr, i, i + 1);
-        arr[i].state = ElementStates.Selected;
-        arr[i + 1].state = ElementStates.Selected;
-        await sortAndWait(arr, barsSetter);
-        swapped = true;
+        arr[k].state = ElementStates.Selected;
+        arr[k + 1].state = ElementStates.Selected;
+        currentStep++;
+
+        if (step === currentStep)
+          return {resArr: arr, numberOfSteps: currentStep};
+        swap(arr, k, k + 1);
+        arr[k].state = ElementStates.Selected;
+        arr[k + 1].state = ElementStates.Selected;
+        currentStep++;
+
+        if (step === currentStep)
+          return {resArr: arr, numberOfSteps: currentStep};
       }
-      // После визуальной сортировки меняем цвет текущего элемента, но не
-      // рисуем его (не сортируем массив) он будет отрисован на следующем шаге
-      arr[i].state = ElementStates.Default;
-      arr[i + 1].state = ElementStates.Default;
+      arr[k].state = ElementStates.Default;
+      arr[k + 1].state = ElementStates.Default;
     }
-  } while (swapped);
-  // Массив отсортирован
+    // Меняет стейт отсортированных столбцов на Modified
+    arr[arr.length - 1 - i].state = ElementStates.Modified;
+  }
   arr.forEach(el => (el.state = ElementStates.Modified));
-  barsSetter([...arr]);
-  // Анлочим кнопки
-  progressSetter(false);
-  mode === 'ascending'
-    ? setAscendingRunning(false)
-    : setDescendingRunning(false);
+  return {resArr: arr, numberOfSteps: currentStep};
 };
