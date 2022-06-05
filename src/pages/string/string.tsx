@@ -3,32 +3,71 @@ import {SolutionLayout} from '../../components/ui/solution-layout/solution-layou
 import {Input} from '../../components/ui/input/input';
 import {Button} from '../../components/ui/button/button';
 import {Circle} from '../../components/ui/circle/circle';
-import {TStringChar} from '../../types/types';
 import InputWrapper from '../../components/input-wrapper/input-wrapper';
+import {setDelay} from '../../utils/utils';
+import {DELAY_IN_MS} from '../../constants/delays';
+import {ElementStates} from '../../types/element-states';
+import {IStringChars} from '../../types/types';
+import {reverseString} from './utils';
 import styles from './string.module.css';
-import swapChars from './utils';
 
 const StringPage: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
-  const [lettersArr, setLettersArr] = useState<TStringChar[]>([]);
+  const [letters, setLetters] = useState<IStringChars[]>([]);
   const [inProgress, setInProgress] = useState(false);
+
+  const swapString = async () => {
+    setInputValue('');
+    setInProgress(true);
+    // Рендер изначальной строки
+    const arrayOfChars: IStringChars[] = [];
+    inputValue.split('').forEach(el => {
+      arrayOfChars.push({char: el, state: ElementStates.Default});
+    });
+    setLetters([...arrayOfChars]);
+    await setDelay();
+    // Узнаем количество шагов
+    const numberOfSteps: number = reverseString(inputValue).numberOfSteps;
+    // Совершаем ранее полученное количество шагов
+    let step = 0;
+    while (step !== numberOfSteps) {
+      // находим текущие кружки (левый и правый), меняем их состояние на changing и обновляем рендер
+      arrayOfChars[step].state = ElementStates.Changing;
+      arrayOfChars[inputValue.length - (step + 1)].state =
+        ElementStates.Changing;
+      setLetters([...arrayOfChars]);
+      await setDelay(DELAY_IN_MS);
+      // получаем нужный отрезок массива, прерывая цикл с помощью второго аргумента step
+      reverseString(inputValue, step + 1).res.forEach((el, idx) => {
+        arrayOfChars[idx].char = el;
+      });
+      // находим текущие кружки (левый и правый), меняем их состояние на modified и обновляем рендер
+      arrayOfChars[step].state = ElementStates.Modified;
+      arrayOfChars[inputValue.length - (step + 1)].state =
+        ElementStates.Modified;
+      setLetters([...arrayOfChars]);
+      await setDelay(DELAY_IN_MS);
+      step++;
+    }
+    setInProgress(false);
+  };
 
   return (
     <SolutionLayout title="Строка">
       <form
         onSubmit={evt => {
           evt.preventDefault();
-          swapChars(inputValue, setInputValue, setLettersArr, setInProgress);
+          swapString();
         }}>
         <InputWrapper>
           <Input
             disabled={inProgress}
-            value={inputValue}
             onChange={(evt: FormEvent<HTMLInputElement>) =>
               setInputValue(evt.currentTarget.value)
             }
             isLimitText={true}
             maxLength={11}
+            value={inputValue}
           />
           <Button
             disabled={!inputValue}
@@ -40,8 +79,8 @@ const StringPage: React.FC = () => {
       </form>
 
       <ul className={styles.circleList}>
-        {lettersArr.map((char, idx) => {
-          return <Circle state={char.state} letter={char.char} key={idx} />;
+        {letters.map((letter, idx) => {
+          return <Circle state={letter.state} letter={letter.char} key={idx} />;
         })}
       </ul>
     </SolutionLayout>

@@ -21,3 +21,8 @@
 .modified {
   background-color: var(--modified-color);
 }
+
+.selected {
+  box-sizing: border-box;
+  background-color: var(--selected-color);
+}

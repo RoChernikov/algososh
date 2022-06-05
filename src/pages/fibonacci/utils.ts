@@ -1,23 +1,9 @@
-import {Dispatch, SetStateAction} from 'react';
-import {getFibArray} from '../../utils/algorithms-utils';
-import {SHORT_DELAY_IN_MS} from '../../constants/delays';
-import {setDelay} from '../../utils/utils';
-
-const calcFib = async (
-  value: number,
-  progressSetter: Dispatch<SetStateAction<boolean>>,
-  numbersSetter: Dispatch<SetStateAction<number[]>>
-) => {
-  progressSetter(true);
-  // получаем массив чисел фибоначчи
-  const fibArray = [...getFibArray(value)];
-  const renderFib: number[] = [];
-  for (let num of fibArray) {
-    renderFib.push(num);
-    numbersSetter([...renderFib]);
-    await setDelay(SHORT_DELAY_IN_MS);
+const getFibArray = (n: number): number[] => {
+  let arr: number[] = [0, 1];
+  for (let i = 2; i <= n + 1; i++) {
+    arr.push(arr[i - 2] + arr[i - 1]);
   }
-  progressSetter(false);
+  return arr.slice(1);
 };
 
-export default calcFib;
+export default getFibArray;

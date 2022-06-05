@@ -7,3 +7,5 @@ export const setDelay = (delay: number = DELAY_IN_MS): Promise<null> => {
     }, delay);
   });
 };
+
+export const getNumber = () => Math.floor(Math.random() * 100) + 1;
