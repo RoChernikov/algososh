@@ -1,4 +1,5 @@
-import {DELAY_IN_MS} from '../constants/delays';
+import {DELAY_IN_MS, SHORT_DELAY_IN_MS} from '../constants/delays';
+import {ICircleElement} from '../types/types';
 
 export const setDelay = (delay: number = DELAY_IN_MS): Promise<null> => {
   return new Promise(resolve => {
@@ -9,3 +10,12 @@ export const setDelay = (delay: number = DELAY_IN_MS): Promise<null> => {
 };
 
 export const getNumber = () => Math.floor(Math.random() * 100) + 1;
+
+export const setElementsWithDelay = async (
+  arr: ICircleElement[],
+  setter: (arr: ICircleElement[]) => void,
+  isShort?: boolean
+) => {
+  setter([...arr]);
+  await setDelay(isShort ? SHORT_DELAY_IN_MS : DELAY_IN_MS);
+};

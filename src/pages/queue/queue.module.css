@@ -1,0 +1,16 @@
+.circleList {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  list-style-type: none;
+  margin-top: 52px;
+  padding: 0;
+}
+
+.input {
+  min-width: 377px;
+}
+
+.deleteBtn {
+  margin-right: 68px;
+}

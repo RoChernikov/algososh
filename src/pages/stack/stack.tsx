@@ -9,6 +9,7 @@ import {ICircleElement} from '../../types/types';
 import {ElementStates} from '../../types/element-states';
 import {setDelay} from '../../utils/utils';
 import {SHORT_DELAY_IN_MS} from '../../constants/delays';
+import {setElementsWithDelay} from '../../utils/utils';
 import styles from './stack.module.css';
 
 const StackPage: React.FC = () => {
@@ -18,11 +19,6 @@ const StackPage: React.FC = () => {
   const [isPopping, setIsPopping] = useState(false);
 
   const stack = useMemo(() => new StackAlgorithm<string>(), []); // экземпляр стэка
-
-  const setElementsWithDelay = async (arr: ICircleElement[]) => {
-    setElements([...arr]);
-    await setDelay(SHORT_DELAY_IN_MS);
-  };
 
   // ***********************ДОБАВЛЕНИЕ***********************
   const pushElement = async () => {
@@ -41,12 +37,12 @@ const StackPage: React.FC = () => {
       char: element ? element : '',
       state: ElementStates.Default
     });
-    await setElementsWithDelay(elements);
+    await setElementsWithDelay(elements, setElements, true);
     // Меняем стейт головы и тобавляем метку 'top'
     const headIdx = elements.length - 1;
     elements[headIdx].head = 'top';
     elements[headIdx].state = ElementStates.Changing;
-    await setElementsWithDelay(elements);
+    await setElementsWithDelay(elements, setElements, true);
     setIsPushing(false);
   };
 
