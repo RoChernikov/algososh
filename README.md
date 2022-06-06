@@ -15,7 +15,29 @@
 [Открыть в браузере](https://algoshosh.vercel.app/)
 <br>
 
-<!-- <a  href="https://algoshosh.vercel.app/" target="_blank" align="center"><img src="./readme_src/demo.gif" width="100%" alt="Демо"></a> -->
+## Строка
+
+<a  href="https://algoshosh.vercel.app/" target="_blank" align="center"><img src="./readme_src/string.gif" width="60%" alt="Демо строка"></a>
+
+## Последовательность Фибоначчи
+
+<a  href="https://algoshosh.vercel.app/" target="_blank" align="center"><img src="./readme_src/fibonacci.gif" width="60%" alt="Демо фибоначчи"></a>
+
+## Сортировка массива
+
+<a  href="https://algoshosh.vercel.app/" target="_blank" align="center"><img src="./readme_src/sort.gif" width="60%" alt="Демо сортировка"></a>
+
+## Стек
+
+<a  href="https://algoshosh.vercel.app/" target="_blank" align="center"><img src="./readme_src/stack.gif" width="60%" alt="Демо стэк"></a>
+
+## Очередь
+
+<a  href="https://algoshosh.vercel.app/" target="_blank" align="center"><img src="./readme_src/queue.gif" width="60%" alt="Демо очередь"></a>
+
+## Связный список
+
+<!-- <a  href="https://algoshosh.vercel.app/" target="_blank" align="center"><img src="./readme_src/list.gif" width="60%" alt="Демо связный список"></a> -->
 
 ## Технологии, использованные при создании:
 
@@ -66,3 +88,5 @@
 - [По вопросам доработки сайта](https://t.me/ro_runner)
 
 ## Проектная работа: "АЛГОСОШ". Создана в рамках учебы в [Яндекс.Практикум](https://praktikum.yandex.ru/) на курсе ["Веб-разработчик плюс"](https://practicum.yandex.ru/web-plus/).
+
+<a  href="https://algoshosh.vercel.app/" target="_blank"><img src="./readme_src/footer.gif" width="100%" alt="подвал"></a>
