@@ -1,7 +1,7 @@
-import {IStringChars} from '../types/types';
+import {ICircleElement} from '../types/types';
 
 export const swap = (
-  arr: IStringChars[] | string[],
+  arr: ICircleElement[] | string[],
   firstIndex: number,
   secondIndex: number
 ): void => {

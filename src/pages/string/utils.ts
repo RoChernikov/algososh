@@ -2,7 +2,10 @@ import {swap} from '../../utils/algorithms-utils';
 
 type TReverseRes = {res: string[]; numberOfSteps: number};
 
-export const reverseString = (string: string, step?: number): TReverseRes => {
+export const reverseStringAlgorithm = (
+  string: string,
+  step?: number
+): TReverseRes => {
   const arrayOfChars = string.split('');
   let stepCounter = 0;
   let startIndex = 0;

@@ -7,27 +7,28 @@ import InputWrapper from '../../components/input-wrapper/input-wrapper';
 import {setDelay} from '../../utils/utils';
 import {DELAY_IN_MS} from '../../constants/delays';
 import {ElementStates} from '../../types/element-states';
-import {IStringChars} from '../../types/types';
-import {reverseString} from './utils';
+import {ICircleElement} from '../../types/types';
+import {reverseStringAlgorithm} from './utils';
 import styles from './string.module.css';
 
 const StringPage: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
-  const [letters, setLetters] = useState<IStringChars[]>([]);
+  const [letters, setLetters] = useState<ICircleElement[]>([]);
   const [inProgress, setInProgress] = useState(false);
 
   const swapString = async () => {
     setInputValue('');
     setInProgress(true);
     // Рендер изначальной строки
-    const arrayOfChars: IStringChars[] = [];
+    const arrayOfChars: ICircleElement[] = [];
     inputValue.split('').forEach(el => {
       arrayOfChars.push({char: el, state: ElementStates.Default});
     });
     setLetters([...arrayOfChars]);
     await setDelay();
     // Узнаем количество шагов
-    const numberOfSteps: number = reverseString(inputValue).numberOfSteps;
+    const numberOfSteps: number =
+      reverseStringAlgorithm(inputValue).numberOfSteps;
     // Совершаем ранее полученное количество шагов
     let step = 0;
     while (step !== numberOfSteps) {
@@ -38,7 +39,7 @@ const StringPage: React.FC = () => {
       setLetters([...arrayOfChars]);
       await setDelay(DELAY_IN_MS);
       // получаем нужный отрезок массива, прерывая цикл с помощью второго аргумента step
-      reverseString(inputValue, step + 1).res.forEach((el, idx) => {
+      reverseStringAlgorithm(inputValue, step + 1).res.forEach((el, idx) => {
         arrayOfChars[idx].char = el;
       });
       // находим текущие кружки (левый и правый), меняем их состояние на modified и обновляем рендер

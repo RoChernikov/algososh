@@ -1,6 +1,8 @@
 import {ElementStates} from './element-states';
 
-export interface IStringChars {
+export interface ICircleElement {
+  tail?: string;
+  head?: string;
   char?: string;
   state: ElementStates;
 }
