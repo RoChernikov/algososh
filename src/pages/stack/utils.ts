@@ -1,4 +1,4 @@
-export interface IStackAlgorithm<T> {
+interface IStackAlgorithm<T> {
   push: (item: T) => void;
   pop: () => void;
   peak: () => T | null;
@@ -7,7 +7,7 @@ export interface IStackAlgorithm<T> {
 }
 
 export class StackAlgorithm<T> implements IStackAlgorithm<T> {
-  container: T[] = [];
+  private container: T[] = [];
 
   push = (item: T): void => {
     this.container.push(item);

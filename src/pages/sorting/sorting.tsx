@@ -22,7 +22,9 @@ const SortingPage: React.FC = () => {
   const [bars, setBars] = useState<TBar[]>([]);
 
   const getRandomArr = () => {
-    const size = Math.random() * (17 - 3) + 3;
+    const minNum = 3;
+    const maxNum = 17;
+    const size = ~~(Math.random() * (maxNum - minNum) + minNum);
     const arr: TBar[] = Array.from({length: size}, () => ({
       num: getNumber(),
       state: ElementStates.Default

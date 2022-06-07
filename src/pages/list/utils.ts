@@ -1,4 +1,4 @@
-export class Node<T> {
+class Node<T> {
   value: T;
   next: Node<T> | null;
   constructor(value: T, next?: Node<T> | null) {
@@ -7,7 +7,7 @@ export class Node<T> {
   }
 }
 
-export interface ILinkedList<T> {
+interface ILinkedList<T> {
   addToTail: (element: T) => void;
   getNodeByIdx: (index: number) => T | null;
   insertAt: (element: T, index: number) => void;

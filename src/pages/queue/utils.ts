@@ -1,4 +1,4 @@
-export interface IQueue<T> {
+interface IQueue<T> {
   enqueue: (value: T) => void;
   dequeue: () => void;
   getHead: () => {value: T | null; index: number};
