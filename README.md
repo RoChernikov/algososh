@@ -17,27 +17,27 @@
 
 ## Строка
 
-<a  href="https://algoshosh.vercel.app/" target="_blank" align="center"><img src="./readme_src/string.gif" width="60%" alt="Демо строка"></a>
+<img src="./readme_src/string.gif" width="60%" alt="Демо строка">
 
 ## Последовательность Фибоначчи
 
-<a  href="https://algoshosh.vercel.app/" target="_blank" align="center"><img src="./readme_src/fibonacci.gif" width="60%" alt="Демо фибоначчи"></a>
+<img src="./readme_src/fibonacci.gif" width="60%" alt="Демо фибоначчи">
 
 ## Сортировка массива
 
-<a  href="https://algoshosh.vercel.app/" target="_blank" align="center"><img src="./readme_src/sort.gif" width="60%" alt="Демо сортировка"></a>
+<img src="./readme_src/sort.gif" width="60%" alt="Демо сортировка">
 
 ## Стек
 
-<a  href="https://algoshosh.vercel.app/" target="_blank" align="center"><img src="./readme_src/stack.gif" width="60%" alt="Демо стэк"></a>
+<img src="./readme_src/stack.gif" width="60%" alt="Демо стэк">
 
 ## Очередь
 
-<a  href="https://algoshosh.vercel.app/" target="_blank" align="center"><img src="./readme_src/queue.gif" width="60%" alt="Демо очередь"></a>
+<img src="./readme_src/queue.gif" width="60%" alt="Демо очередь">
 
 ## Связный список
 
-<a  href="https://algoshosh.vercel.app/" target="_blank" align="center"><img src="./readme_src/list.gif" width="60%" alt="Демо связный список"></a>
+<img src="./readme_src/list.gif" width="60%" alt="Демо связный список">
 
 ## Технологии, использованные при создании:
 
