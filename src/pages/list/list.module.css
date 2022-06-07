@@ -1,0 +1,47 @@
+.circleList {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  list-style-type: none;
+  margin-top: 120px;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.input {
+  max-width: 204px;
+}
+
+.button {
+  min-width: 175px;
+}
+
+.bigButton {
+  min-width: 362px;
+}
+
+.elementWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.topCircle {
+  position: absolute;
+  top: -61px;
+  left: 15px;
+}
+
+.bottomCircle {
+  position: absolute;
+  top: 120px;
+  left: 12px;
+}

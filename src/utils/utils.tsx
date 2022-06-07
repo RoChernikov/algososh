@@ -14,8 +14,8 @@ export const getNumber = () => Math.floor(Math.random() * 100) + 1;
 export const setElementsWithDelay = async (
   arr: ICircleElement[],
   setter: (arr: ICircleElement[]) => void,
-  isShort?: boolean
+  isLong?: boolean
 ) => {
   setter([...arr]);
-  await setDelay(isShort ? SHORT_DELAY_IN_MS : DELAY_IN_MS);
+  await setDelay(isLong ? DELAY_IN_MS : SHORT_DELAY_IN_MS);
 };

@@ -11,6 +11,7 @@ import {setDelay} from '../../utils/utils';
 import {SHORT_DELAY_IN_MS} from '../../constants/delays';
 import {setElementsWithDelay} from '../../utils/utils';
 import styles from './stack.module.css';
+//--------------------------------------------------------------------------------
 
 const StackPage: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>('');
@@ -37,12 +38,12 @@ const StackPage: React.FC = () => {
       char: element ? element : '',
       state: ElementStates.Default
     });
-    await setElementsWithDelay(elements, setElements, true);
+    await setElementsWithDelay(elements, setElements);
     // Меняем стейт головы и тобавляем метку 'top'
     const headIdx = elements.length - 1;
     elements[headIdx].head = 'top';
     elements[headIdx].state = ElementStates.Changing;
-    await setElementsWithDelay(elements, setElements, true);
+    await setElementsWithDelay(elements, setElements);
     setIsPushing(false);
   };
 
@@ -79,7 +80,7 @@ const StackPage: React.FC = () => {
           evt.preventDefault();
           pushElement();
         }}>
-        <InputWrapper maxWidth={829}>
+        <InputWrapper>
           <Input
             extraClass={styles.input}
             disabled={isPushing || isPopping}

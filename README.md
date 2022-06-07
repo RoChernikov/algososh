@@ -37,7 +37,7 @@
 
 ## Связный список
 
-<!-- <a  href="https://algoshosh.vercel.app/" target="_blank" align="center"><img src="./readme_src/list.gif" width="60%" alt="Демо связный список"></a> -->
+<a  href="https://algoshosh.vercel.app/" target="_blank" align="center"><img src="./readme_src/list.gif" width="60%" alt="Демо связный список"></a>
 
 ## Технологии, использованные при создании:
 

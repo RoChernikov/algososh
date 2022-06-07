@@ -1,14 +1,16 @@
 .circleList {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  flex-wrap: wrap;
+  column-gap: 16px;
+  row-gap: 40px;
   list-style-type: none;
   margin-top: 52px;
   padding: 0;
 }
 
 .input {
-  min-width: 377px;
+  max-width: 377px;
 }
 
 .deleteBtn {

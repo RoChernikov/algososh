@@ -6,11 +6,13 @@ import {Column} from '../../components/ui/column/column';
 import {ElementStates} from '../../types/element-states';
 import {Direction} from '../../types/direction';
 import {TBar} from '../../types/types';
+import InputWrapper from '../../components/input-wrapper/input-wrapper';
 import {SHORT_DELAY_IN_MS} from '../../constants/delays';
 import {getNumber} from '../../utils/utils';
 import {setDelay} from '../../utils/utils';
 import styles from './sorting.module.css';
 import {selectionSortAlgorithm, bubbleSortAlgorithm} from './utils';
+//--------------------------------------------------------------------------------
 
 const SortingPage: React.FC = () => {
   const [inProgress, setInProgress] = useState(false);
@@ -75,7 +77,7 @@ const SortingPage: React.FC = () => {
   return (
     <SolutionLayout title="Сортировка массива">
       <div className={styles.wrapper}>
-        <div className={styles.inputWrapper}>
+        <InputWrapper>
           <div className={styles.radioWrapper}>
             <RadioInput
               disabled={inProgress}
@@ -123,7 +125,7 @@ const SortingPage: React.FC = () => {
             type="submit"
             onClick={() => getRandomArr()}
           />
-        </div>
+        </InputWrapper>
         <ul className={styles.columnList}>
           {bars.map((bar, idx) => {
             return <Column index={bar.num} state={bar.state} key={idx} />;

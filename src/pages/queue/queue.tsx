@@ -9,6 +9,7 @@ import {ElementStates} from '../../types/element-states';
 import Queue from './utils';
 import {setElementsWithDelay} from '../../utils/utils';
 import styles from './queue.module.css';
+//--------------------------------------------------------------------------------
 
 const QueuePage: React.FC = () => {
   const maxNum = 7;
@@ -43,7 +44,7 @@ const QueuePage: React.FC = () => {
     array[tail.index].char = tail.value;
     array[tail.index].tail = 'tail';
     array[tail.index].state = ElementStates.Changing;
-    await setElementsWithDelay(elements, setElements, true);
+    await setElementsWithDelay(elements, setElements);
     array[tail.index].state = ElementStates.Default;
     setIsAdding(false);
   };
@@ -59,7 +60,7 @@ const QueuePage: React.FC = () => {
       queue.dequeue();
       const head = queue.getHead();
       array[head.index - 1].state = ElementStates.Changing;
-      await setElementsWithDelay(array, setElements, true);
+      await setElementsWithDelay(array, setElements);
       array[head.index - 1].state = ElementStates.Default;
       if (head.index > 0) {
         array[head.index - 1].head = '';
@@ -84,7 +85,7 @@ const QueuePage: React.FC = () => {
           evt.preventDefault();
           enqueue();
         }}>
-        <InputWrapper maxWidth={829}>
+        <InputWrapper>
           <Input
             disabled={isAdding || isDeleting}
             extraClass={styles.input}

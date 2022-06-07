@@ -12,3 +12,7 @@
   column-gap: 16px;
   row-gap: 48px;
 }
+
+.input {
+  max-width: 377px;
+}

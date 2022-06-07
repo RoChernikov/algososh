@@ -8,6 +8,7 @@ import {Circle} from '../../components/ui/circle/circle';
 import InputWrapper from '../../components/input-wrapper/input-wrapper';
 import styles from './fibonacci.module.css';
 import getFibArray from './utils';
+//--------------------------------------------------------------------------------
 
 const FibonacciPage: React.FC = () => {
   const maxValue = 19;
@@ -38,6 +39,7 @@ const FibonacciPage: React.FC = () => {
         }}>
         <InputWrapper>
           <Input
+            extraClass={styles.input}
             disabled={inProgress}
             placeholder="Введите число от 1 до 19"
             type="number"

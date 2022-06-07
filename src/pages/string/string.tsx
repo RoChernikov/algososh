@@ -10,6 +10,7 @@ import {ElementStates} from '../../types/element-states';
 import {ICircleElement} from '../../types/types';
 import {reverseStringAlgorithm} from './utils';
 import styles from './string.module.css';
+//--------------------------------------------------------------------------------
 
 const StringPage: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
@@ -62,6 +63,7 @@ const StringPage: React.FC = () => {
         }}>
         <InputWrapper>
           <Input
+            extraClass={styles.input}
             disabled={inProgress}
             onChange={(evt: FormEvent<HTMLInputElement>) =>
               setInputValue(evt.currentTarget.value)
