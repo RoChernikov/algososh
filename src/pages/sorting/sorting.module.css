@@ -1,0 +1,40 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 456px;
+}
+
+.inputWrapper > button {
+  width: 205px;
+}
+
+.radioWrapper {
+  margin-top: 18px;
+  margin-right: 52px;
+  display: flex;
+  gap: 40px;
+}
+
+.buttonsWrapper {
+  display: flex;
+  gap: 12px;
+  margin-right: 80px;
+}
+
+.buttonsWrapper > button {
+  width: 208px;
+}
+
+.columnList {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  align-content: flex-start;
+  column-gap: 16px;
+  row-gap: 48px;
+  width: 944px;
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 0;
+}

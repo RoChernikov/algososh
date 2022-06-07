@@ -15,11 +15,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: appearance 0.5s forwards;
+}
+
+.circle.small {
+  opacity: 1;
+  animation: none;
 }
 
 .small {
-  width: 56px;
-  height: 56px;
+  width: 50px;
+  height: 50px;
+}
+
+.small.changing {
+  border: 3px solid var(--changing-color);
 }
 
 .letter {
@@ -32,6 +44,7 @@
 
 .changing {
   border: 4px solid var(--changing-color);
+  transform: scale(1.1);
 }
 
 .modified {
@@ -70,4 +83,13 @@
 
 .tail60.element {
   bottom: -100px;
+}
+
+@keyframes appearance {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

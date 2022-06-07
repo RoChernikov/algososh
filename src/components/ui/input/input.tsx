@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./input.module.css";
+import React from 'react';
+import styles from './input.module.css';
 
 interface InputProps extends React.HTMLProps<HTMLInputElement> {
   placeholder?: string;
@@ -8,16 +8,16 @@ interface InputProps extends React.HTMLProps<HTMLInputElement> {
 }
 
 export const Input: React.FC<InputProps> = ({
-  placeholder = "Введите текст",
-  extraClass = "",
-  type = "text",
+  placeholder = 'Введите текст',
+  extraClass = '',
+  type = 'text',
   maxLength,
   max,
   isLimitText = false,
   ...rest
 }) => {
   const limitText =
-    type === "text"
+    type === 'text'
       ? `Максимум — ${maxLength} символа`
       : `Максимальное число — ${max}`;
 
@@ -33,8 +33,7 @@ export const Input: React.FC<InputProps> = ({
       />
       {isLimitText && (
         <span
-          className={`text text_type_input-lim text_color_input mt-2 ml-8 ${styles.limit}`}
-        >
+          className={`text text_type_input-lim text_color_input mt-2 ml-8 ${styles.limit}`}>
           {limitText}
         </span>
       )}
