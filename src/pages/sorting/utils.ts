@@ -77,7 +77,7 @@ export const bubbleSortAlgorithm = (
   // Начало цикла
   const {length} = arr;
   let currentStep = 0;
-  for (let i = 0; i < length - 1; i++) {
+  for (let i = 0; i < length; i++) {
     for (let k = 0; k < length - 1 - i; k++) {
       arr[k].state = ElementStates.Changing;
       arr[k + 1].state = ElementStates.Changing;
